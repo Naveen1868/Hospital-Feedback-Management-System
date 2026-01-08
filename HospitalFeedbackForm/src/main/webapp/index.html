@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hospital Feedback Form</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Arial, sans-serif;
+    }
+    body {
+      min-height: 100vh;
+      width: 100vw;
+      background: #F4F6F8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 24px;
+    }
+    .form-container {
+      
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+
+      box-shadow: 0 6px 20px rgba(32, 40, 80, 0.15);
+      border-radius: 14px;
+      max-width: 800px;
+      width: 95%;
+      padding: 40px 32px 32px 32px;
+      margin: 18px auto;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+    }
+    .form-bg-overlay {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      z-index: 1;
+      border-radius: 14px;
+      pointer-events: none;
+    }
+    form { position: relative; z-index: 2; }
+    h1 {
+      color: #204080;
+      font-size: 2.25rem;
+      margin-bottom: 6px;
+      font-weight: bold;
+      letter-spacing: 0.02em;
+      text-align: center;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 22px;
+      margin-top: 13px;
+      color: #FFA500;
+      letter-spacing: 0.03em;
+      font-size: 1.3rem;
+      font-weight: 600;
+    }
+    hr {
+      height: 2.8px;
+      background: #204080;
+      border: none;
+      margin-bottom: 18px;
+    }
+    .form-group {
+      margin-bottom: 18px;
+      text-align: left;
+    }
+    label {
+      display: block;
+      margin-bottom: 7px;
+      font-weight: 500;
+      color: #204080;
+      letter-spacing: 0.01em;
+      font-size: 1rem;
+    }
+    input[type="text"], input[type="number"], input[type="date"], textarea, select {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #B9CFFA;
+      border-radius: 7px;
+      font-size: 1rem;
+      background: #F9FAFB;
+      color: #212121;
+      margin-bottom: 2px;
+      box-shadow: 0 1px 2px rgba(32, 64, 128, 0.02);
+      transition: border 0.2s;
+    }
+    input:focus, textarea:focus {
+      outline: none;
+      border: 1.5px solid #1DE9B6;
+      background: #fff;
+    }
+    textarea {
+      resize: vertical;
+      min-height: 90px;
+    }
+    .checkbox-options,
+    .rating-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 4px;
+    }
+    .checkbox-options label,
+    .rating-options label {
+      background: #ECF3FFcc; 
+      border: 1px solid #B9CFFA;
+      color: #1B3A56;
+      padding: 7px 15px 7px 9px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 400;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.2s, border 0.2s;
+    }
+    .checkbox-options input[type="checkbox"]:focus + label,
+    .rating-options input[type="radio"]:focus + label {
+      border: 1.5px solid #1DE9B6;
+    }
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+      margin-top: 26px;
+    }
+    .buttons button {
+      min-width: 135px;
+      padding: 13px 0;
+      font-size: 1.15rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      transition: background 0.25s;
+      box-shadow: 0 3px 8px rgba(37,99,235,0.04);
+    }
+    .buttons .submit-btn {
+      background: linear-gradient(90deg, #FFA500 60%, #1DE9B6 100%);
+      color: #fff;
+    }
+    .buttons .reset-btn {
+      background: #F43F5E;
+      color: #fff;
+    }
+    .buttons button:hover {
+      filter: brightness(0.92);
+    }
+    @media (max-width: 800px) {
+      .form-container {
+        padding: 13px 2vw;
+      }
+    }
+    @media (max-width: 600px) {
+      .form-container {
+        padding: 7px 1vw;
+      }
+      .buttons {
+        flex-direction: column;
+        gap: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <div class="form-bg-overlay"></div>
+    <form action="FeedbackServlet" method="POST">
+      <h1> Hospital</h1>
+      <hr>
+      <h2>🩺 Feedback Form 🩺</h2>
+      <div class="form-group">
+        <label for="name">Patient Name</label>
+        <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+      </div>
+      <div class="form-group">
+        <label for="age">Age</label>
+        <input type="number" id="age" name="age" min="0" placeholder="Enter your age" required>
+      </div>
+      <div class="form-group">
+        <label for="visitDate">Date of visit</label>
+        <input type="date" id="visitDate" name="visitDate" required>
+      </div>
+      <div class="form-group">
+        <label for="cityname">Place/City</label>
+        <input type="text" id="cityname" name="cityname" placeholder="Enter your place/city" required>
+      </div>
+      <div class="form-group">
+        <label>Department/Specialist (Choose Multiple if Applicable)</label>
+        <div class="checkbox-options">
+          <label><input type="checkbox" name="department" value="Cardiologist">Cardiologist</label>
+          <label><input type="checkbox" name="department" value="General surgeon">General surgeon</label>      
+          <label><input type="checkbox" name="department" value="Gynecologist">Gynecologist</label>
+          <label><input type="checkbox" name="department" value="Neurologist">Neurologist</label>
+          <label><input type="checkbox" name="department" value="Urologist">Urologist</label>
+          <label><input type="checkbox" name="department" value="Emergency Medicine Specialist">Emergency Medicine Specialist</label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Staff Behaviour</label>
+        <div class="rating-options">
+          <label><input type="radio" name="StaffBehaviour" value="Excellent" required>Excellent</label>
+          <label><input type="radio" name="StaffBehaviour" value="Good">Good</label>
+          <label><input type="radio" name="StaffBehaviour" value="Average">Average</label>
+          <label><input type="radio" name="StaffBehaviour" value="Poor">Poor</label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>How would you rate the cleanliness of the hospital?</label>
+        <div class="rating-options">
+          <label><input type="radio" name="cleanliness" value="Excellent" required>Excellent</label>
+          <label><input type="radio" name="cleanliness" value="Good">Good</label>
+          <label><input type="radio" name="cleanliness" value="Average">Average</label>
+          <label><input type="radio" name="cleanliness" value="Poor">Poor</label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>How would you rate your overall experience at our hospital?</label>
+        <div class="rating-options">
+          <label><input type="radio" name="overallRating" value="Excellent" required>Excellent</label>
+          <label><input type="radio" name="overallRating" value="Good">Good</label>
+          <label><input type="radio" name="overallRating" value="Average">Average</label>
+          <label><input type="radio" name="overallRating" value="Poor">Poor</label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="feedback">Additional Comments</label>
+        <textarea id="feedback" name="feedback" placeholder="Write your comments here..."></textarea>
+      </div>
+      <div class="buttons">
+        <button type="submit" class="submit-btn">Submit Feedback</button>
+        <button type="reset" class="reset-btn">Reset</button>
+      </div>
+    </form>
+  </div>
+</body>
+</html>
